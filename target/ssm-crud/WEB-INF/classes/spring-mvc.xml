@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
+<!--springmvc配置文件，包含网站跳转逻辑的控制配置-->
+    <context:component-scan base-package="controller mapper dao service bean test" use-default-filters="false">
+        <!--只扫描控制器。  -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+    <!--配置视图解析器-->
+    <bean id="resourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--俩个标准配置-->
+    <!--将mvc不能处理的资源交给tomcat-->
+    <mvc:default-servlet-handler/>
+    <!--能支持spring更高级的一些功能，比如jsr303校验，快捷的Ajax请求，映射动态请求等-->
+    <mvc:annotation-driven/>
+</beans>

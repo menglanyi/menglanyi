@@ -1,0 +1,1 @@
+SELECT emp_id,emp_name,gender,email,d_id,dept_id,dept_name FROM tb_emp,tb_dept WHERE d_id=dept_id AND emp_id=1;
